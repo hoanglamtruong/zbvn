@@ -1,0 +1,18 @@
+services:
+  zbvn:
+    build: .
+    image: zbvn-app:latest
+    container_name: zbvn-app
+    ports:
+      - "8100:3000"
+    env_file: .env
+    networks:
+      - homelab-net
+      - zos_zos-net
+    restart: unless-stopped
+
+networks:
+  homelab-net:
+    external: true
+  zos_zos-net:
+    external: true

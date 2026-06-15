@@ -1,0 +1,75 @@
+// ZBVN · zeebee.vn — Prisma schema
+// Models: Owner · Category · Order · Payment
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  name        String
+  description String?
+  owners      Owner[]
+
+  @@map("categories")
+}
+
+model Owner {
+  id             Int       @id @default(autoincrement())
+  name           String
+  slug           String    @unique
+  category       String // category slug (shop·spa·store·fb·realestate)
+  phone          String?
+  description    String?
+  telegramId     String?   @map("telegram_id")
+  status         String    @default("pending") // pending·active·suspended
+  webStatus      String    @default("up") @map("web_status") // up·down
+  commissionRate Int       @default(10) @map("commission_rate")
+  paymentStatus  String    @default("ok") @map("payment_status") // ok·overdue
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  categoryRef    Category? @relation(fields: [category], references: [slug])
+  orders         Order[]
+  payments       Payment[]
+
+  @@index([category])
+  @@map("owners")
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  ownerId    Int      @map("owner_id")
+  buyerName  String   @map("buyer_name")
+  buyerPhone String   @map("buyer_phone")
+  amount     Int
+  commission Int
+  status     String   @default("new") // new·confirmed·done·cancelled
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  owner      Owner    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId])
+  @@map("orders")
+}
+
+model Payment {
+  id         Int       @id @default(autoincrement())
+  ownerId    Int       @map("owner_id")
+  amount     Int
+  dueDate    DateTime  @map("due_date")
+  paidAt     DateTime? @map("paid_at")
+  proofImage String?   @map("proof_image")
+  status     String    @default("pending") // pending·paid·overdue
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  owner      Owner     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId])
+  @@map("payments")
+}
