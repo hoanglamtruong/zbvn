@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { notifyBridge } from "@/lib/telegram";
+import { notifyOrder } from "@/lib/botNotify";
 
 export const runtime = "nodejs";
 
@@ -27,9 +27,14 @@ export async function POST(req: NextRequest) {
       data: { ownerId, buyerName, buyerPhone, amount, commission, status: "new" },
     });
 
-    await notifyBridge(
-      `🛒 <b>Đơn hàng mới</b>\nOwner: ${owner.name}\nKhách: ${buyerName} (${buyerPhone})\nGiá trị: ${amount.toLocaleString("vi-VN")}đ\nHoa hồng: ${commission.toLocaleString("vi-VN")}đ`
-    );
+    await notifyOrder({
+      orderId: order.id,
+      ownerId: owner.id,
+      buyerName,
+      buyerPhone,
+      amount,
+      commission,
+    });
 
     return NextResponse.json(
       { ok: true, id: order.id, commission },

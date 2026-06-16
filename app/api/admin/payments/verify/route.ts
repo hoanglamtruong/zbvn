@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminFromRequest } from "@/lib/auth";
+import { notifyPaymentVerified } from "@/lib/botNotify";
 
 export const runtime = "nodejs";
 
@@ -31,6 +32,8 @@ export async function POST(req: NextRequest) {
         data: { paymentStatus: "ok", webStatus: "up" },
       }),
     ]);
+
+    await notifyPaymentVerified({ ownerId: payment.ownerId, amount: payment.amount });
 
     return NextResponse.json({ ok: true, payment: updated });
   } catch (err) {
