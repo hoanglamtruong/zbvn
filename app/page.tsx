@@ -4,12 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 
 const NGANH = [
-  { icon: "🛒", name: "Bán hàng", sub: "Tạp hóa · thời trang · đồ dùng", slug: "shop" },
-  { icon: "💆", name: "Spa · Làm đẹp", sub: "Nail · tóc · chăm sóc da", slug: "spa" },
-  { icon: "🏪", name: "Cửa hàng", sub: "Retail · showroom · đặc sản", slug: "store" },
-  { icon: "🍜", name: "Ẩm thực", sub: "Quán ăn · cà phê · bánh", slug: "fb" },
-  { icon: "🏠", name: "Bất động sản", sub: "Cho thuê · mua bán · nghỉ dưỡng", slug: "realestate" },
-  { icon: "💼", name: "Tuyển dụng", sub: "Việc làm · đào tạo địa phương", slug: "recruit" },
+  { icon: "🛒", name: "Tạp hóa & Bán lẻ", sub: "Tạp hóa · cửa hàng · đồ dùng", slug: "shop" },
+  { icon: "👗", name: "Thời trang & Phụ kiện", sub: "Quần áo · giày · phụ kiện", slug: "fashion" },
+  { icon: "🎂", name: "Tiệm bánh", sub: "Bánh kem · bánh mì · bánh ngọt", slug: "bakery" },
+  { icon: "🍜", name: "Ẩm thực", sub: "Quán cafe · nhà hàng · đặt món", slug: "fb" },
+  { icon: "🔧", name: "Dịch vụ tại nhà", sub: "Sửa điện · nước · điều hòa", slug: "services" },
+  { icon: "🏡", name: "Lưu trú & Nghỉ dưỡng", sub: "Homestay · villa · phòng trọ", slug: "accommodation" },
+  { icon: "🎓", name: "Giáo dục & Tuyển dụng", sub: "Khóa học · việc làm · đào tạo", slug: "recruit" },
+  { icon: "🏢", name: "Môi giới BĐS", sub: "Mua bán · cho thuê · tư vấn", slug: "realestate" },
 ];
 
 const VALUES = [
@@ -134,7 +136,7 @@ export default function Home() {
       {/* NGÀNH */}
       <div className="section">
         <div className="sec-eyebrow">Ngành phù hợp</div>
-        <h2 className="sec-title">ZBVN phục vụ <span>nhiều ngành</span></h2>
+        <h2 className="sec-title">8 ngành · <span>1 nền tảng</span></h2>
         <p className="sec-sub" style={{ marginBottom: 28 }}>Dù bạn kinh doanh gì · ZBVN đều có thể xây kênh phù hợp cho cơ sở của bạn.</p>
         <div className="nganh-grid">
           {NGANH.map((n) => (
