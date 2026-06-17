@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Nunito } from "next/font/google";
+import { Montserrat, Nunito, Cormorant_Garamond, DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -11,6 +11,28 @@ const montserrat = Montserrat({
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin", "vietnamese"],
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -35,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${montserrat.variable} ${nunito.variable} h-full antialiased`}>
+    <html lang="vi" className={`${montserrat.variable} ${nunito.variable} ${cormorant.variable} ${dmSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[var(--blue-light)] text-[var(--ink)]">
         {children}
       </body>
