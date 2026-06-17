@@ -1,9 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Nunito } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
+});
+
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin", "vietnamese"],
   display: "swap",
 });
@@ -29,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${montserrat.variable} h-full antialiased`}>
+    <html lang="vi" className={`${montserrat.variable} ${nunito.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[var(--blue-light)] text-[var(--ink)]">
         {children}
       </body>

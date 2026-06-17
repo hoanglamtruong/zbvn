@@ -9,6 +9,7 @@ const NGANH = [
   { icon: "🏪", name: "Cửa hàng", sub: "Retail · showroom · đặc sản", slug: "store" },
   { icon: "🍜", name: "Ẩm thực", sub: "Quán ăn · cà phê · bánh", slug: "fb" },
   { icon: "🏠", name: "Bất động sản", sub: "Cho thuê · mua bán · nghỉ dưỡng", slug: "realestate" },
+  { icon: "💼", name: "Tuyển dụng", sub: "Việc làm · đào tạo địa phương", slug: "recruit" },
 ];
 
 const VALUES = [

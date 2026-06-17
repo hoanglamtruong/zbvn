@@ -35,6 +35,36 @@ body {
   font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
 }
 
+/* ===== Landing animation system ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; will-change: opacity, transform; }
+.reveal.revealed { opacity: 1; transform: none; }
+.reveal-x { opacity: 0; transform: translateX(-32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal-x.revealed { opacity: 1; transform: none; }
+.reveal-xr { opacity: 0; transform: translateX(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal-xr.revealed { opacity: 1; transform: none; }
+.reveal-zoom { opacity: 0; transform: scale(0.92); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal-zoom.revealed { opacity: 1; transform: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
+
+@keyframes ctaPulse { 0%,100% { box-shadow: 0 8px 24px rgba(0,0,0,0.18); } 50% { box-shadow: 0 8px 32px rgba(0,0,0,0.32); transform: scale(1.015); } }
+.cta-pulse { animation: ctaPulse 2.4s ease-in-out infinite; }
+
+@keyframes bobble { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+.scroll-indicator { animation: bobble 1.6s ease-in-out infinite; }
+
+@keyframes popIn { 0% { transform: scale(0); } 70% { transform: scale(1.2); } 100% { transform: scale(1); } }
+.revealed .pop-badge { animation: popIn 0.4s ease-out both; }
+
+@keyframes kenburns { 0% { transform: scale(1) translate(0,0); } 100% { transform: scale(1.12) translate(-2%,-2%); } }
+.kenburns { animation: kenburns 14s ease-in-out infinite alternate; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-x, .reveal-xr, .reveal-zoom { transition: none; opacity: 1; transform: none; }
+  .cta-pulse, .scroll-indicator, .kenburns { animation: none; }
+}
+
 /* ===== ZBVN Homepage (scoped under .zbvn-home) ===== */
 .zbvn-home { background: var(--white); color: var(--ink); font-size: 15px; line-height: 1.7; }
 
@@ -76,7 +106,7 @@ body {
 .zbvn-home .step-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
 .zbvn-home .step-desc { font-size: 12px; color: var(--ink-2); line-height: 1.6; }
 
-.zbvn-home .nganh-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.zbvn-home .nganh-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; }
 .zbvn-home .nganh-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 16px; text-align: center; cursor: pointer; transition: all 0.2s; text-decoration: none; display: block; }
 .zbvn-home .nganh-card:hover { border-color: var(--primary); background: var(--green-light); }
 .zbvn-home .nganh-icon { font-size: 28px; margin-bottom: 8px; }
