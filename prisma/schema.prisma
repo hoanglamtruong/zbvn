@@ -26,6 +26,7 @@ model Inquiry {
   phone     String
   category  String
   note      String?
+  status    String   @default("new") // new·contacted·onboarded
   createdAt DateTime @default(now()) @map("created_at")
 
   @@index([category])
