@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Nunito, Cormorant_Garamond, DM_Sans, Playfair_Display } from "next/font/google";
+import { Montserrat, Nunito, Cormorant_Garamond, DM_Sans, Playfair_Display, Raleway, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -36,6 +36,20 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const beVietnam = Be_Vietnam_Pro({
+  variable: "--font-be-vietnam",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "ZBVN · zeebee.vn — Kênh của bạn, Doanh thu của bạn",
   description:
@@ -57,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${montserrat.variable} ${nunito.variable} ${cormorant.variable} ${dmSans.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang="vi" className={`${montserrat.variable} ${nunito.variable} ${cormorant.variable} ${dmSans.variable} ${playfair.variable} ${raleway.variable} ${beVietnam.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[var(--blue-light)] text-[var(--ink)]">
         {children}
       </body>
